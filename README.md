@@ -2,14 +2,27 @@
 
 I've been working on this project for some time now, and it seems to be doing great, so I've decided to share it. Every couple of days, I add some new features to it, and I now consider it a great tool for conducting exciting analyses on any cryptocurrency's historical data and discovering interesting patterns hidden within.
 
-Pattern Analysis Framework for Crypto: This project is a Python framework that enables users to create valuable analyses easily, relying on pattern recognition and clustering data mining methods.
+**Pattern Analysis Framework for Crypto:** This project is a Python framework that enables users to create valuable analyses easily, relying on pattern recognition and clustering data mining methods.
 
-Here's how it works: Deep inside this code, the main idea is to find patterns in the data and study the special behavior for every extracted pattern. The first step is data cleaning. If the data is historical cryptocurrency data, we skip this part because the data is already cleaned. The next step is to simplify the data. The user chooses a window size, let's say 24, and a step size, let's say 5. This means the records will be divided into parts, with each part containing 24 records, and the space between the last point in one group and the first point in the next group is 5. After this division, the real simplification happens using the PIPS method to convert the 24 records to 5 records or more, as the user decides. These 5 points must represent the most important points in the group and the points that represent the real movement and pattern inside the group. After simplification, the next step is to normalize records. The records are in different scales representing prices, so the price is converted to the percentage of change. Then, the x-axis containing time is also converted into the percentage of change. Next, we calculate the rate of change of the price over time to end with one number representing each point.
+**How it works:**
 
-The next step is to cluster the data into clusters of points that look more like each other than the rest. However, the challenge is deciding the right number of clusters in the data. The user inputs a range for the number of patterns and a range of variations for every pattern. Using the Silhouette score, the code decides the best number of patterns to cluster the data into. Then, clustering with the K-means algorithm occurs. After the first clustering, every cluster enters the next step of clustering to extract different variations inside every cluster, and again, the Silhouette score is calculated to decide the best number for clustering. If you plot the clusters, you'll see how every cluster is unique and has a specific shape. If you plot the variations, you'll see how inside every cluster, there are a lot of variations. Sometimes, the same shape can end, for example, with an uptrend or downtrend while it has the same unique shape and characteristics. After the clustering phase, we move to the study phase. The user inputs the point of measure (POM), let's say 48. This means that after building the KD tree for pattern detection, we loop over the whole data, and whenever we find a specific pattern, we move ahead by 48 records and measure the change that happened to the price to detect the effect of this pattern on the price. We also log other things like the change of the price inside the pattern itself and so on. Then, we conduct our analysis to determine what patterns have what characteristics and what effect. The user inputs a threshold and an average threshold to divide the patterns according to it. For example, the patterns that have an uptrend after it with a percentage of 70% and an average uptrend volume of 1%. According to this, we extract two groups that match the user criteria: the uptrend group and the downtrend group. Then, the user can backtest and determine what happens if they buy when detecting an uptrend pattern and sell when detecting a downtrend pattern and what criteria work best with their preferences.
+Deep inside this code, the main idea is to find patterns in the data and study the special behavior for every extracted pattern.
 
-How to use it: Simply, you can create a clustering analysis instance, then give it all the parameters you need. After this, this instance has all the functionalities I talked about and a lot more. You can use `.train()` to train it on your data. You can use `.plot_behavior()` to plot the groups' appearance pie chart. You can use `.get_signals()` and give it new records, and the return will be a buy signal, sell signal, or hold signal according to the train and so on. The notebook contains a small documentation containing all the methods you can use to complete your analysis, then save it in a special file to load it and use or continue the work on it later.
+1. **Data Cleaning:** If the data is historical cryptocurrency data, we skip this part because the data is already cleaned.
 
+2. **Data Simplification:** The user chooses a window size, let's say 24, and a step size, let's say 5. This means the records will be divided into parts, with each part containing 24 records, and the space between the last point in one group and the first point in the next group is 5. After this division, the real simplification happens using the PIPS method to convert the 24 records to 5 records or more, as the user decides. These 5 points must represent the most important points in the group and the points that represent the real movement and pattern inside the group.
+
+3. **Normalization of Records:** The records are in different scales representing prices, so the price is converted to the percentage of change. Then, the x-axis containing time is also converted into the percentage of change. Next, we calculate the rate of change of the price over time to end with one number representing each point.
+
+4. **Clustering Data:** The next step is to cluster the data into clusters of points that look more like each other than the rest. However, the challenge is deciding the right number of clusters in the data. The user inputs a range for the number of patterns and a range of variations for every pattern. Using the Silhouette score, the code decides the best number of patterns to cluster the data into. Then, clustering with the K-means algorithm occurs. After the first clustering, every cluster enters the next step of clustering to extract different variations inside every cluster, and again, the Silhouette score is calculated to decide the best number for clustering. If you plot the clusters, you'll see how every cluster is unique and has a specific shape. If you plot the variations, you'll see how inside every cluster, there are a lot of variations. Sometimes, the same shape can end, for example, with an uptrend or downtrend while it has the same unique shape and characteristics. After the clustering phase, we move to the study phase.
+
+5. **Analysis Phase:** After the clustering phase, we move to the study phase. The user inputs the point of measure (POM), let's say 48. This means that after building the KD tree for pattern detection, we loop over the whole data, and whenever we find a specific pattern, we move ahead by 48 records and measure the change that happened to the price to detect the effect of this pattern on the price. We also log other things like the change of the price inside the pattern itself and so on. Then, we conduct our analysis to determine what patterns have what characteristics and what effect.
+
+6. **Pattern Classification:** The user inputs a threshold and an average threshold to divide the patterns according to it. For example, the patterns that have an uptrend after it with a percentage of 70% and an average uptrend volume of 1%. According to this, we extract two groups that match the user criteria: the uptrend group and the downtrend group.
+
+**How to use it:**
+
+Simply, you can create a clustering analysis instance, then give it all the parameters you need. After this, this instance has all the functionalities I talked about and a lot more. You can use `.train()` to train it on your data. You can use `.plot_behavior()` to plot the groups' appearance pie chart. You can use `.get_signals()` and give it new records, and the return will be a buy signal, sell signal, or hold signal according to the train and so on. The notebook contains a small documentation containing all the methods you can use to complete your analysis, then save it in a special file to load it and use or continue the work on it later.
 
 # documentaion:
 
@@ -189,7 +202,8 @@ print(output)
 
 ### example of exteracted patterns :
 
-<center>
+
+    
 ![IMAGE 2024-04-21 19:39:00](https://github.com/Ahmed-Sleem/Pattern-Analysis-Framework-for-cryptocurrency/assets/128150121/a0c7bba3-4d0a-471e-b91e-41275e6a84e9)
 
 ![IMAGE 2024-04-21 19:39:16](https://github.com/Ahmed-Sleem/Pattern-Analysis-Framework-for-cryptocurrency/assets/128150121/91cad8b0-99a9-4ca1-8198-48ca39df9f48)
@@ -208,6 +222,6 @@ print(output)
 
 ![IMAGE 2024-04-21 19:40:24](https://github.com/Ahmed-Sleem/Pattern-Analysis-Framework-for-cryptocurrency/assets/128150121/8a6aaed8-06f4-42b5-be4b-5092d1d116f4)
 
-</center>
+
 
 
