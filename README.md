@@ -20,6 +20,10 @@ Deep inside this code, the main idea is to find patterns in the data and study t
 
 6. **Pattern Classification:** The user inputs a threshold and an average threshold to divide the patterns according to it. For example, the patterns that have an uptrend after it with a percentage of 70% and an average uptrend volume of 1%. According to this, we extract two groups that match the user criteria: the uptrend group and the downtrend group.
 
+7.  **Project Evolution:**
+The project continuously improves with frequent updates, introducing advanced features like double clustering, variation identification within patterns, sequence saving for future predictive analysis, and reduced training time, and more 
+
+
 **How to use it:**
 
 Simply, you can create a clustering analysis instance, then give it all the parameters you need. After this, this instance has all the functionalities I talked about and a lot more. You can use `.train()` to train it on your data. You can use `.plot_behavior()` to plot the groups' appearance pie chart. You can use `.get_signals()` and give it new records, and the return will be a buy signal, sell signal, or hold signal according to the train and so on. The notebook contains a small documentation containing all the methods you can use to complete your analysis, then save it in a special file to load it and use or continue the work on it later.
